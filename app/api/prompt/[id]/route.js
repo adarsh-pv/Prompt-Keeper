@@ -31,10 +31,11 @@ export const PATCH = async (request,{params}) =>{
     }
 }
 
-export const Delete = async (req,{params}) =>{
+export const DELETE = async (request,{params}) =>{
+    console.log("callign");
     try {
         await connectToDB()
-        const response = await Prompt.findByIdAndRemove(params?.id)
+        const response = await Prompt.findOneAndDelete({_id:params?.id})
         return new Response("Prompt deleted sucessfully",{status:200})
     } catch (error) {
         console.log(error);
